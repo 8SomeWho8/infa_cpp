@@ -32,6 +32,10 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="3.cpp" />
+		<Unit filename="4.cpp" />
+		<Unit filename="5.cpp" />
+		<Unit filename="6.cpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
