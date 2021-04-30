@@ -1,0 +1,63 @@
+A
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main()
+{
+    int a[10000], n, sum = 0;
+    float avg = 0;
+    cin >> n;
+    avg = 0;
+    for (int i=0; i<n; i++)
+    {
+        cin >> a[i];
+        avg += a[i];
+    }
+    avg /= n;
+    for (int i=0; i<n; i++)
+        if (a[i]>avg)
+            sum += a[i];
+    cout << sum;
+}
+
+B
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main()
+{
+   int a[102][102], n, m, k;
+   cin >> n >> m >> k;
+
+   for (int i = 0; i <= n+1; i++)
+       for (int j = 0; j <= m+1; j++)
+           a[i][j] = 0;
+
+   int x, y;
+   for (int i = 1; i <= k; i++)
+   {
+       cin >> x >> y;
+       a[x][y] = -1;
+   }
+
+   for (int i = 1; i <= n; i++)
+   {
+       for (int j = 1; j <= m; j++)
+       {
+            if (a[i][j] != -1)
+                for (int h = -1; h <= 1; h++)
+                    for (int s = -1;s <= 1; s++)
+                        if (a[i+h][j+s] == -1)
+                            a[i][j]++;
+            cout << a[i][j] << " ";
+            if (j==m)
+                cout << endl;
+       }
+   }
+}
+
+C

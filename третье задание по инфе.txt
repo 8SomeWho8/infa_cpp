@@ -1,0 +1,149 @@
+A
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+    int h1, m1, s1, h2, m2, s2;
+    string inp;
+    cin >> inp;
+    h1 = 10*(inp[0] - 48) + (inp[1] - 48);
+    m1 = 10*(inp[3] - 48) + (inp[4] - 48);
+    s1 = 10*(inp[6] - 48) + (inp[7] - 48);
+    cin >> inp;
+    h2 = 10*(inp[0] - 48) + (inp[1] - 48);
+    m2 = 10*(inp[3] - 48) + (inp[4] - 48);
+    s2 = 10*(inp[6] - 48) + (inp[7] - 48);
+    if (h1 <= h2)
+        cout << (h2-h1)*3600 + (m2-m1)*60 + (s2-s1);
+    else
+        cout << h2*3600 + m2*60 + s2 + (24*3600 - h1*3600 - m1*60 - s1);
+
+}
+
+B
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n, k1 = 0, k2 = 0, k3 = 0, k4 = 0, x, y, k_max, num_max;
+    cin >> n;
+    for (int i=1; i<=n; i++)
+    {
+        cin >> x >> y;
+        if (x > 0 && y > 0)
+            k1++;
+        else if (x > 0 && y < 0)
+            k4++;
+        else if (x < 0 && y < 0)
+            k3++;
+        else if (x < 0 && y > 0)
+            k2++;
+    }
+    num_max = k1;
+    k_max = 1;
+    if (k2 > num_max)
+    {
+        num_max = k2;
+        k_max = 2;
+    }
+    if (k3 > num_max)
+    {
+        num_max = k3;
+        k_max = 3;
+    }
+    if (k4 > num_max)
+    {
+        num_max = k4;
+        k_max = 4;
+    }
+    cout << k_max <<" "<< num_max;
+}
+
+C
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n, k, s;
+    cin >> n;
+    int max1, max2, min1, min2;
+    cin >> max1 >> max2;
+    if (max1 > max2)
+    {
+        s = max1;
+        max1 = max2;
+        max2 = s;
+    }
+    //cout << max1 <<" " << max2;
+    min1 = max1;
+    min2 = max2;
+    for (int i = 3; i<=n; i++)
+    {
+        cin >> k;
+        if (k < min2)
+        {
+            if (k < min1)
+            {
+                s = min1;
+                min1 = k;
+                min2 = s;
+            }
+            else
+                min2 = k;
+        }
+        if (k > max1)
+        {
+            if (k > max2)
+            {
+                s = max2;
+                max2 = k;
+                max1 = s;
+            }
+            else
+                max1 = k;
+        }
+    }
+    cout << min1 + min2 << " " << max1 + max2;
+}
+
+D
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int prime(int n)
+{
+    int k = 0, i = 2;
+    bool prime_flag;
+    while (k < n)
+    {
+        prime_flag = true;
+        for (int j = 2; (j <= sqrt(i)) && prime_flag; j++)
+        {
+            if (i%j == 0)
+                prime_flag = false;
+        }
+        i++;
+        if (prime_flag)
+            k++;
+    }
+    return i-1;
+}
+int main()
+{
+    int n;
+    cin >> n;
+    cout << prime(n);
+}

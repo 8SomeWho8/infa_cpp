@@ -1,0 +1,238 @@
+A
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+   int n, m, r1, r2, s;
+   cin >> n >> m;
+   if (n > m)
+   {
+       r1 = m;
+       r2 = n;
+   }
+   else
+   {
+       r1 = n;
+       r2 = m;
+   }
+   while (r1 != 0)
+   {
+       s = r1;
+       r1 = r2 % r1;
+       r2 = s;
+   }
+   cout << r2;
+}
+
+B
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int god;
+    cin >> god;
+    if (god % 4 == 0)
+    {
+        if (god % 100 == 0 and god % 400 != 0)
+            cout << "NO";
+        else
+        {
+            cout << "YES";
+        }
+    }
+    else
+        cout << "NO";
+}
+
+C
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n, k;
+    k = 0;
+    cin >> n;
+    while (n != 0)
+    {
+        if (n%2 == 0)
+            k++;
+        cin >> n;
+    }
+    cout << k;
+}
+
+D
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n;
+    cin >> n;
+    while (n%2 == 0 and n >= 2)
+    {
+        n /= 2;
+    }
+    if (n == 1)
+        cout << "YES";
+    else
+        cout << "NO";
+}
+
+E
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n, max_chet;
+    cin >> n;
+    max_chet = 0;
+    while (n != 0)
+    {
+        if (n%2 == 0)
+        {
+            if (max_chet < n)
+                max_chet = n;
+        }
+        cin >> n;
+    }
+    cout << max_chet;
+}
+
+F
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int k, max_n, n;
+    cin >> n;
+    k = 0;
+    max_n = n;
+    while (n != 0)
+    {
+        if (max_n < n)
+        {
+            k = 1;
+            max_n = n;
+        }
+        else if (max_n == n)
+            k++;
+        cin >> n;
+    }
+    cout << k;
+}
+
+G
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main()
+{
+    int n;
+    bool prime;
+    cin >> n;
+    prime = true;
+    for (int i = 2; i < sqrt(n)+1; i++)
+    {
+        if (n%i == 0)
+        {
+            prime = false;
+            break;
+        }
+    }
+    if (prime)
+        cout << 1;
+    else
+        cout << 0;
+}
+
+H
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main()
+{
+    int n, m;
+    bool prime = true;
+    cin >> n;
+    for (int i = 2; i <= n; i++)
+    {
+        while (n%i == 0)
+        {
+            cout << i << endl;
+            n /= i;
+            prime = false;
+        }
+    }
+}
+
+
+I
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+    int v, zp;
+    string num;
+    cin >> v >> num;
+    zp = 0;
+    while (num != "A999AA")
+    {
+        if (v > 60)
+        {
+            if (num[1] == num[2] && num[2] == num[3])
+                zp += 1000;
+            else if (num[1] == num[2] || num[1] == num[3] || num[2] == num[3])
+                zp += 500;
+            else
+                zp +=100;
+        }
+        cin >> v >> num;
+    }
+    cout << zp;
+}
+
+J
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+    int n, k;
+    string v;
+    cin >> n;
+    while (n != 0)
+    {
+        k = n % 60;
+        for (int i = 1; i <= k%10;i++)
+            v += "v";
+        for (int i = 1; i <= k/10; i++)
+            v += "<";
+        n /= 60;
+        v+=".";
+    }
+    for (int i = v.length() - 2; i >= 0; i--)
+    {
+        cout << v[i];
+    }
+}
