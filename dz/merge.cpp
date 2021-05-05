@@ -1,11 +1,11 @@
-#include <iostream>
+/*#include <iostream>
 #include <random>
 #include <ctime>
 #include <fstream>
 
 using namespace std;
 
-void merge_sort(unsigned int *a, int start, int finish)
+void merge_sort(int *a, int start, int finish)
 {
 
     if (finish - start > 1)
@@ -13,8 +13,8 @@ void merge_sort(unsigned int *a, int start, int finish)
         merge_sort(a, start, (finish+start)/2);
         merge_sort(a, (finish+start)/2+1, finish);
 
-        unsigned int* c = new unsigned int [(finish+start)/2 + 1 - start];
-        unsigned int* d = new unsigned int [finish + 1 - (finish+start)/2-1];
+        int* c = new int [(finish+start)/2 + 1 - start];
+        int* d = new int [finish + 1 - (finish+start)/2-1];
 
         for (int k=start; k<=(finish+start)/2; k++)
             c[k-start] = a[k];
@@ -60,24 +60,21 @@ void merge_sort(unsigned int *a, int start, int finish)
     }
 }
 
-const int start = 800000;
-const int finish = 2000000;
-const int step = 50000;
+const int start = 1000000;
+const int finish = 10000000;
+const int step = 20000;
 
-unsigned int a[finish];
+int a[finish];
 
 int main()
 {
     int c, j;
 
-    default_random_engine generator;
-    uniform_int_distribution<unsigned int> distribution(10, 2*finish);
-    unsigned int dice_roll;
-    dice_roll = distribution(generator);
+    mt19937 mersenne(static_cast<int>(time(0)));
 
     ofstream fout;
 
-    fout.open("merge_stats.txt");
+    fout.open("merge_stats_best.txt");
 
     for (int i=start; i <= finish; i+=step)
         fout << i << " ";
@@ -86,7 +83,7 @@ int main()
     for (int N=start; N <= finish; N+=step)
     {
         for (long int i=0; i < N; i++)
-            a[i] = distribution(generator);
+            a[i] = mersenne();
 
         unsigned int start_time = clock();
 
@@ -99,7 +96,5 @@ int main()
     }
     fout.close();
 
-    /*for (int i=0; i<finish; i++)
-            cout << a[i] << ' ';*/
-
 }
+*/

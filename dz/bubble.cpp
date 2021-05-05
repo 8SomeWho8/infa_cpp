@@ -5,7 +5,7 @@
 
 using namespace std;
 
-long int bubble_sort(unsigned int *a, int n)
+long int bubble_sort(int *a, int n)
 {
     bool flag=1;
     int c;
@@ -29,22 +29,62 @@ long int bubble_sort(unsigned int *a, int n)
     return finish_time-start_time;
 };
 
-const int start = 50000;
-const int finish = 300000;
-const int step = 10000;
+long int insertion_sort(int *a, int n)
+{
+    int c, j;
 
-unsigned int a[finish];
+    unsigned int start_time = clock();
+
+    for (int i=1; i<n; i++)
+    {
+        c = a[i];
+        j = i-1;
+        while(j>=0 and a[j]>c)
+        {
+            a[j+1] = a[j];
+            j--;
+        }
+        a[j+1] = c;
+    }
+
+    unsigned int finish_time = clock();
+    return finish_time-start_time;
+};
+
+long int selection_sort(int* a, int n)
+{
+    int c, min_n;
+
+    unsigned int start_time = clock();
+
+    for (int i=0; i<n-1; i++)
+    {
+        min_n = i;
+        for (int j=i; j<n; j++)
+            if(a[min_n]>a[j])
+                min_n = j;
+        c = a[min_n];
+        a[min_n] = a[i];
+        a[i] = c;
+    }
+
+    unsigned int finish_time = clock();
+    return finish_time-start_time;
+}
+
+const int start = 100000;
+const int finish = 1000000;
+const int step = 50000;
+
+int a[finish];
 
 int main()
 {
-    default_random_engine generator;
-    uniform_int_distribution<unsigned int> distribution(10, 2*finish);
-    unsigned int dice_roll;
-    dice_roll = distribution(generator);
+    mt19937 mersenne(static_cast<int>(time(0)));
 
     ofstream fout;
 
-    fout.open("buble_stats.txt");
+    fout.open("bubble_stats_best.txt");
 
     for (int i=start; i <= finish; i+=step)
         fout << i << " ";
@@ -53,11 +93,13 @@ int main()
     for (int N=start; N <= finish; N+=step)
     {
         for (long int i=0; i < N; i++)
-            a[i] = distribution(generator);
+            a[i] = mersenne();
         int time = bubble_sort(a, N);
         fout << time << " ";
         cout << time << " ";
     }
+
     fout.close();
-}
-*/
+
+
+}*/

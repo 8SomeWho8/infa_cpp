@@ -1,20 +1,19 @@
 /*#include <random>
 #include <iostream>
+#include <ctime>
 
 using namespace std;
 
 int main()
 {
-    default_random_engine generator;
-    uniform_int_distribution<int> distribution(10,1999);
-    int dice_roll;
-    dice_roll = distribution(generator);
-    cout << dice_roll << " ";
-    int a[100];
-    for (int i=0; i < 100; i++)
+    mt19937 mersenne(static_cast<unsigned int>(time(0)));
+
+    for (int count = 0; count < 48; ++count)
     {
-        a[i] = distribution(generator);
-        cout << a[i] << " ";
+        std::cout << mersenne() << " ";
+        if ((count + 1) % 5 == 0)
+            std::cout << "\n";
     }
 }
+
 */

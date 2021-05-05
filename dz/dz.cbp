@@ -32,11 +32,6 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="2.1.cpp" />
-		<Unit filename="3.cpp" />
-		<Unit filename="4.cpp" />
-		<Unit filename="5.cpp" />
-		<Unit filename="6.cpp" />
 		<Unit filename="Untitled1.cpp" />
 		<Unit filename="Untitled2.cpp" />
 		<Unit filename="Untitled3.cpp" />
@@ -44,14 +39,20 @@
 		<Unit filename="Untitled5.cpp" />
 		<Unit filename="Untitled6.cpp" />
 		<Unit filename="bubble.cpp" />
+		<Unit filename="draughts.cpp" />
+		<Unit filename="dyna_pro.cpp" />
+		<Unit filename="explosives.cpp" />
 		<Unit filename="heapsort.cpp" />
 		<Unit filename="insertion.cpp" />
+		<Unit filename="kuznechik.cpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="merge.cpp" />
 		<Unit filename="quick_sort.cpp" />
+		<Unit filename="ride.cpp" />
+		<Unit filename="rucksack.cpp" />
 		<Unit filename="selection.cpp" />
+		<Unit filename="shoko.cpp" />
 		<Unit filename="test.cpp" />
-		<Unit filename="train.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

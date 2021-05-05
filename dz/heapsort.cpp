@@ -5,65 +5,67 @@
 
 using namespace std;
 
-void siftDown(unsigned int* a, int n, int k)
+void heapify(int* a, int i, int n)
 {
-    int t;
-    int c;
-    while (2*k + 1 < n)
+    int k_largest_child, k_left_child, k_right_child, tmp;
+    while (true)
     {
-        if (2*k + 2 < n && a[2*k + 2] < a[2*k + 1])
-            t = 2*k + 2;
-        else
-            t = 2*k + 1;
+        k_largest_child = i;
+        k_left_child = 2*i + 1;
+        k_right_child = 2*i + 2;
 
-        if (a[k] <= a[t])
+        if (k_right_child < n && a[k_right_child] > a[k_largest_child])
+            k_largest_child = k_right_child;
+
+        if (k_left_child < n && a[k_left_child] > a[k_largest_child])
+            k_largest_child = k_left_child;
+
+        if (k_largest_child == i)
             break;
 
-        c = a[k];
-        a[k] = a[t];
-        a[t] = c;
+        tmp = a[i];
+        a[i] = a[k_largest_child];
+        a[k_largest_child] = tmp;
 
-        k = t;
+        i = k_largest_child;
     }
 }
 
-void build_heap(unsigned int* a, int n)
+
+void build_heap(int* a, int n)
 {
     for (int i = n/2; i >= 0; i--)
-        siftDown(a, n, i);
+        heapify(a, i, n);
 }
 
-void heap_sort(unsigned int* a, int n)
+void heapSort(int* a, int n)
 {
-    int c;
-    int k = n;
     build_heap(a, n);
-    for (int i = 0; i < n; i++)
+    int tmp;
+    for (int i=n-1; i>=0; i--)
     {
-        c = a[0];
-        a[0] = a[n-1-i];
-        a[n-1-i] = c;
-        k--;
-        build_heap(a, k);
+        tmp = a[i];
+        a[i] = a[0];
+        a[0] = tmp;
+
+        heapify(a, 0, i-1);
     }
 }
 
-const int start = 50000;
-const int finish = 300000;
-const int step = 10000;
 
-unsigned int a[finish];
+const int start = 1000000;
+const int finish = 10000000;
+const int step = 20000;
+
+int a[finish];
 
 int main()
 {
-    default_random_engine generator;
-    uniform_int_distribution<unsigned int> distribution(10, 2*finish);
-    unsigned int dice_roll;
-    dice_roll = distribution(generator);
+    mt19937 mersenne(static_cast<int>(time(0)));
 
     ofstream fout;
 
-    fout.open("buble_stats.txt");
+    fout.open("heap_stats_best.txt");
 
     for (int i=start; i <= finish; i+=step)
         fout << i << " ";
@@ -72,11 +74,11 @@ int main()
     for (int N=start; N <= finish; N+=step)
     {
         for (long int i=0; i < N; i++)
-            a[i] = distribution(generator);
+            a[i] = mersenne();
 
         unsigned int start_time = clock();
 
-        heap_sort(a, finish);
+        heapSort(a, N);
 
         unsigned int finish_time = clock();
 
@@ -85,7 +87,6 @@ int main()
     }
 
     fout.close();
-    for (int i=0; i<finish; i++)
-        cout << a[i] << ' ';
+
 }
 */
